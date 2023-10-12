@@ -1,0 +1,80 @@
+---
+title: "Text Analytics Project"
+author: "Kush Patel"
+date: "2023-10-01"
+output: html_document
+---
+
+```{r}
+# Load library
+library(tidyverse)
+```
+
+
+```{r}
+# Load review sentiment file
+review_sentiment <- read.csv("../data/reviews/review_sentiment.csv")
+```
+
+```{r}
+review_sentiment
+```
+
+```{r}
+# Get review counts
+review_sentiment %>% group_by(cuisine) %>% count() %>% arrange(desc(n))
+```
+
+```{r}
+# Summarize
+review_sentiment %>% group_by(cuisine) %>% summarise(count = n(), mean_arousal = mean(arousal), mean_valence = mean(valence))
+```
+
+```{r}
+review_sentiment %>% filter(cuisine == "Korean") %>% arrange(desc(arousal))
+```
+
+```{r}
+review_sentiment %>% filter(cuisine == "Italian") %>% arrange(arousal)
+```
+
+```{r}
+review_sentiment %>% filter(cuisine == "Latin American") %>% arrange(desc(valence))
+```
+
+```{r}
+review_sentiment %>% filter(cuisine == "Thai") %>% arrange(valence)
+```
+
+```{r}
+# Load instruction sentiment file
+instruction_sentiment <- read.csv("../data/instructions/instruction_sentiment.csv")
+```
+
+```{r}
+instruction_sentiment
+```
+
+```{r}
+# Get review counts
+instruction_sentiment %>% group_by(cuisine) %>% count() %>% arrange(desc(n))
+```
+
+```{r}
+# Summarize
+instruction_sentiment %>% group_by(cuisine) %>% summarise(count = n(), mean_arousal = mean(arousal), mean_valence = mean(valence))
+```
+
+```{r}
+instruction_sentiment %>% filter(cuisine == "Thai") %>% arrange(desc(arousal))
+```
+
+```{r}
+instruction_sentiment %>% filter(cuisine == "Indian") %>% arrange(desc(valence))
+```
+
+```{r}
+
+```
+
+
